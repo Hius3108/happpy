@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Loop with Sound</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Hiệu ứng gợi ý người dùng nhấn vào */
+        .hint {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: sans-serif;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            pointer-events: none; /* Không cản trở cú click */
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hint" class="hint">Chạm để bật âm thanh 🔊</div>
+
+    <video id="introVideo" autoplay muted loop playsinline>
+        <source src="./assets/1.mp4" type="video/mp4">
+    </video>
+
+    <script>
+        const video = document.getElementById("introVideo");
+        const hint = document.getElementById("hint");
+
+        // Khi người dùng click/chạm vào bất kỳ đâu trên trang
+        document.addEventListener("click", function() {
+            video.muted = false; // Mở âm thanh
+            hint.style.opacity = "0"; // Ẩn dòng chữ gợi ý
+        });
+    </script>
+
+</body>
+</html>
